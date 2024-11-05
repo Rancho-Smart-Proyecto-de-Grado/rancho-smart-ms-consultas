@@ -13,7 +13,7 @@ public class Consulta {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long idConsulta;
     
     @Column(nullable=false, name = "ID_HISTORIAL_MEDICO")
     private Long idHistorialMedico;
@@ -30,12 +30,52 @@ public class Consulta {
     @Column(name = "COMENTARIOS")
     private String comentarios;
 
-    public Long getId() {
-        return id;
+    @Column(name = "SINTOMAS")
+    private String sintomas;
+
+    @Column(name = "RECETA")
+    private String receta;
+
+    @Column(name = "PROXIMA_CONSULTA")
+    private LocalDate proximaConsulta;
+
+    public Consulta() {
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public Consulta(Long idHistorialMedico, Long idTratamiento, String diagnostico, LocalDate fechaConsulta,
+            String comentarios, String sintomas, String receta, LocalDate proximaConsulta) {
+        this.idHistorialMedico = idHistorialMedico;
+        this.idTratamiento = idTratamiento;
+        this.diagnostico = diagnostico;
+        this.fechaConsulta = fechaConsulta;
+        this.comentarios = comentarios;
+        this.sintomas = sintomas;
+        this.receta = receta;
+        this.proximaConsulta = proximaConsulta;
+    }
+
+    public Long getIdConsulta() {
+        return idConsulta;
+    }
+
+    public void setIdConsulta(Long idConsulta) {
+        this.idConsulta = idConsulta;
+    }
+
+    public Long getIdHistorialMedico() {
+        return idHistorialMedico;
+    }
+
+    public void setIdHistorialMedico(Long idHistorialMedico) {
+        this.idHistorialMedico = idHistorialMedico;
+    }
+
+    public Long getIdTratamiento() {
+        return idTratamiento;
+    }
+
+    public void setIdTratamiento(Long idTratamiento) {
+        this.idTratamiento = idTratamiento;
     }
 
     public String getDiagnostico() {
@@ -62,31 +102,29 @@ public class Consulta {
         this.comentarios = comentarios;
     }
 
-    public Long getIdHistorialMedico() {
-        return idHistorialMedico;
+    public String getSintomas() {
+        return sintomas;
     }
 
-    public void setIdHistorialMedico(Long idHistorialMedico) {
-        this.idHistorialMedico = idHistorialMedico;
+    public void setSintomas(String sintomas) {
+        this.sintomas = sintomas;
     }
 
-    public Long getIdTratamiento() {
-        return idTratamiento;
+    public String getReceta() {
+        return receta;
     }
 
-    public void setIdTratamiento(Long idTratamiento) {
-        this.idTratamiento = idTratamiento;
+    public void setReceta(String receta) {
+        this.receta = receta;
     }
 
-    public Consulta() {}
-
-    public Consulta(Long idHistorialMedico, Long idTratamiento, String diagnostico, LocalDate fechaConsulta,
-            String comentarios) {
-        this.idHistorialMedico = idHistorialMedico;
-        this.idTratamiento = idTratamiento;
-        this.diagnostico = diagnostico;
-        this.fechaConsulta = fechaConsulta;
-        this.comentarios = comentarios;
+    public LocalDate getProximaConsulta() {
+        return proximaConsulta;
     }
-   
+
+    public void setProximaConsulta(LocalDate proximaConsulta) {
+        this.proximaConsulta = proximaConsulta;
+    }
+
+    
 }
