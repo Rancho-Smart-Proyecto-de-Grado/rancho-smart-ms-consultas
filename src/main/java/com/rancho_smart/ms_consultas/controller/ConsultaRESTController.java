@@ -31,8 +31,26 @@ public class ConsultaRESTController {
     @GetMapping("/{id}")
     public ResponseEntity<Consulta> getConsultaById(@PathVariable Long id) {
         return consultaService.getConsultaById(id)
-            .map(ResponseEntity::ok)
-            .orElse(ResponseEntity.notFound().build());
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+    @GetMapping("/tratamiento/{idTratamiento}")
+    public ResponseEntity<List<Consulta>> getConsultasByIdTratamiento(@PathVariable Long idTratamiento) {
+        List<Consulta> consultas = this.consultaService.getConsultasByIdTratamiento(idTratamiento);
+        if (consultas != null && !consultas.isEmpty()) {
+            return ResponseEntity.ok(consultas);
+        }
+        return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/historial/{idHistorialMedico}")
+    public ResponseEntity<List<Consulta>> getConsultasByIdHistorialMedico(@PathVariable Long idHistorialMedico) {
+        List<Consulta> consultas = this.consultaService.getConsultasByIdHistorial(idHistorialMedico);
+        if (consultas != null && !consultas.isEmpty()) {
+            return ResponseEntity.ok(consultas);
+        }
+        return ResponseEntity.noContent().build();
     }
 
     @PostMapping
@@ -43,8 +61,8 @@ public class ConsultaRESTController {
     @PutMapping("/{id}")
     public ResponseEntity<Consulta> updateConsulta(@PathVariable Long id, @RequestBody Consulta consultaDetails) {
         return consultaService.updateConsulta(id, consultaDetails)
-            .map(ResponseEntity::ok)
-            .orElse(ResponseEntity.notFound().build());
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 
     @DeleteMapping("/{id}")
